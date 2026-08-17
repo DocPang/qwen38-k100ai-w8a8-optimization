@@ -12,11 +12,10 @@ GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.95}"
 MTP_CUTOFF="${MTP_CUTOFF:-41216}"
 SPEC_TOKENS="${SPEC_TOKENS:-5}"
 MAX_NUM_BATCHED_TOKENS="${MAX_NUM_BATCHED_TOKENS:-4096}"
-CONTAINER_NAME="${CONTAINER_NAME:-qwen38-k100ai-r054-agent}"
-CACHE_DIR="${CACHE_DIR:-$ROOT_DIR/.cache/r054-agent}"
+CONTAINER_NAME="${CONTAINER_NAME:-qwen38-k100ai-r054}"
+CACHE_DIR="${CACHE_DIR:-$ROOT_DIR/.cache/r054}"
 RESTART_POLICY="${RESTART_POLICY:-unless-stopped}"
 ENABLE_PREFIX_CACHING="${ENABLE_PREFIX_CACHING:-1}"
-CLAUDE_COMPAT="${CLAUDE_COMPAT:-1}"
 
 MODEL_DIR="$(cd "$MODEL_DIR" && pwd)"
 PATCH_DIR="$ROOT_DIR/patches/r054"
@@ -51,12 +50,6 @@ hyhal=()
 prefix_args=()
 [[ "$ENABLE_PREFIX_CACHING" == "1" ]] && prefix_args+=(--enable-prefix-caching)
 served_args=(--served-model-name qwen3.8-27b-w8a8)
-compat_args=()
-if [[ "$CLAUDE_COMPAT" == "1" ]]; then
-  served_args=(--served-model-name qwen3.8-27b-w8a8 claude-sonnet-4-6)
-  compat_args+=(--default-chat-template-kwargs '{"enable_thinking": false}')
-  compat_args+=(--enable-auto-tool-choice --tool-call-parser qwen3_coder)
-fi
 verify_m=$((SPEC_TOKENS + 1))
 source_sha="$(python3 - <<PY
 import hashlib
@@ -124,7 +117,6 @@ docker run -d \
     --quantization compressed-tensors \
     "${served_args[@]}" \
     --language-model-only --generation-config vllm --disable-custom-all-reduce \
-    "${compat_args[@]}" \
     "${prefix_args[@]}" \
     --mamba-cache-dtype float16 --mamba-ssm-cache-dtype float16 \
     -cc.mode=3 -cc.inductor_compile_config '{"combo_kernels": false, "benchmark_combo_kernel": false}' \

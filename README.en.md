@@ -9,7 +9,7 @@ The release is built around the accepted **R054 K5/M6 fast branch** and includes
 - pinned HuggingFace checkpoint revision;
 - pinned Hygon/DTK Docker image digest;
 - source for all runtime patches and the native HIP GEMV;
-- one-command Agent and benchmark launch profiles;
+- one-command long-lived deployment and benchmark launch profiles;
 - deterministic benchmark scripts;
 - machine-readable raw/summary results;
 - explicit correctness and non-exactness boundaries.
@@ -94,7 +94,7 @@ The build defaults to `PYTORCH_ROCM_ARCH=gfx928` inside the pinned image.
 
 ## 4. Start the same profile used for real deployment
 
-This is the practical Agent profile: **0.95 memory utilization, Prefix Caching, 262K context, MTP5 below the adaptive cutoff, true-M1 above it, OpenAI + Claude-compatible model aliases, and tool-call parsing**. The published profile is intentionally **text-only** (`--language-model-only`); Qwen3.8 vision capability is not part of this release's validated scope.
+This is the recommended long-lived deployment profile: **0.95 memory utilization, Prefix Caching, 262K context, MTP5 below the adaptive cutoff, and true-M1 above it**. The published profile is intentionally **text-only** (`--language-model-only`); Qwen3.8 vision capability is not part of this release's validated scope.
 
 ```bash
 MODEL_DIR="$HOME/models/Qwen3.8-27B-SmoothQuant-W8A8-INT8" \
@@ -107,7 +107,7 @@ Equivalent explicit entry point:
 ```bash
 MODEL_DIR="$HOME/models/Qwen3.8-27B-SmoothQuant-W8A8-INT8" \
 GPU_ID=0 PORT=8000 \
-bash scripts/serve_r054_agent.sh
+bash scripts/serve_r054.sh
 ```
 
 Defaults:
@@ -123,12 +123,12 @@ max_num_batched_tokens  4096
 max_num_seqs            32
 ```
 
-The service exposes `qwen3.8-27b-w8a8`; with Claude compatibility enabled it also exposes `claude-sonnet-4-6` as an alias to the same underlying model.
+The service exposes the model name `qwen3.8-27b-w8a8`.
 
 Follow startup:
 
 ```bash
-docker logs -f qwen38-k100ai-r054-agent
+docker logs -f qwen38-k100ai-r054
 ```
 
 Health check:
@@ -176,7 +176,7 @@ The benchmark scripts record TTFT, prefill proxy throughput, decode throughput, 
 
 ## 6. Current deployed-profile measurements
 
-The final publication measurements below are from the **same 0.95 + Prefix Cache profile used for real Agent deployment**, not a synthetic stripped-down service.
+The final publication measurements below are from the **0.95 + Prefix Cache long-lived deployment profile**, not a synthetic stripped-down service.
 
 ### 6.1 Short hot throughput
 
@@ -212,9 +212,9 @@ All rows use output=256, one request at a time, and are rejected from authority 
 
 The 512/256 row intentionally shows a low-acceptance prompt and therefore must not be confused with the 69.17 tok/s 512/512 hot workload above. Speculative decoding throughput is prompt/acceptance sensitive.
 
-### 6.3 Real-world Agent average
+### 6.3 Real-world workload average
 
-A separate anonymized aggregate of **1,517 real interactive Agent API calls over the previous 30 days** was mapped onto this deployed-profile curve. No prompts, conversation text, user identifiers, or session identifiers are published.
+A separate anonymized aggregate of **1,517 real API calls over the previous 30 days** was mapped onto this deployed-profile curve. No prompts, conversation text, user identifiers, or session identifiers are published.
 
 Call-weighted session-average context distribution:
 
@@ -234,11 +234,11 @@ Using piecewise interpolation of the measured decode curve:
 - call-weighted harmonic/effective-time estimate: **15.57 tok/s**;
 - weighting by the actually generated historical output-token counts: **14.84 tok/s**.
 
-For practical planning, **~15 tok/s decode** is the recommended single-number description of this real Agent workload. This is a workload-weighted estimate, not a claim that every request runs at 15 tok/s.
+For practical planning, **~15 tok/s decode** is the recommended single-number description of this real workload. This is a workload-weighted estimate, not a claim that every request runs at 15 tok/s.
 
-Prefix Caching affects TTFT much more than decode speed, so cold full-context TTFT should not be used as the steady-state Agent turn latency.
+Prefix Caching affects TTFT much more than decode speed, so cold full-context TTFT should not be used as the steady-state latency for repeated-prefix workloads.
 
-### 6.4 Prefix Cache Agent behavior
+### 6.4 Prefix Cache behavior with repeated prefixes
 
 Repeated 32K prefix measurements on the deployed profile:
 

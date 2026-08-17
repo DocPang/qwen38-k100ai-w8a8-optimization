@@ -9,7 +9,7 @@
 - 固定到具体 revision 的 HuggingFace 上游模型；
 - 固定到 digest 的海光/DTK Docker 镜像；
 - 全部运行时补丁源码和原生 HIP GEMV 源码；
-- Agent 实际部署与 benchmark 两套一键启动配置；
+- 长期部署与 benchmark 两套一键启动配置；
 - 确定性的测速脚本；
 - 机器可读的原始结果与汇总结果；
 - 明确的正确性边界与 non-exact 边界。
@@ -100,7 +100,7 @@ PYTORCH_ROCM_ARCH=gfx928
 
 ## 4. 启动与实际长期部署相同的配置
 
-这是推荐的 Agent 实际使用配置：**0.95 显存利用率、Prefix Caching、262K 上下文、41,216 token 以下使用 MTP5、超过 cutoff 自动切换到 true-M1、同时提供 OpenAI/Claude 兼容模型别名并支持工具调用解析**。
+这是推荐的长期部署配置：**0.95 显存利用率、Prefix Caching、262K 上下文、41,216 token 以下使用 MTP5、超过 cutoff 自动切换到 true-M1**。
 
 本次发布有意固定为 **纯文本模式**（`--language-model-only`）；Qwen3.8 的视觉能力不属于本版本已验证范围。
 
@@ -115,7 +115,7 @@ bash scripts/quickstart.sh
 ```bash
 MODEL_DIR="$HOME/models/Qwen3.8-27B-SmoothQuant-W8A8-INT8" \
 GPU_ID=0 PORT=8000 \
-bash scripts/serve_r054_agent.sh
+bash scripts/serve_r054.sh
 ```
 
 默认参数：
@@ -131,12 +131,12 @@ max_num_batched_tokens  4096
 max_num_seqs            32
 ```
 
-服务默认暴露 `qwen3.8-27b-w8a8`；开启 Claude 兼容后，还会额外暴露 `claude-sonnet-4-6` 作为同一底层模型的兼容别名。
+服务暴露模型名 `qwen3.8-27b-w8a8`。
 
 查看启动日志：
 
 ```bash
-docker logs -f qwen38-k100ai-r054-agent
+docker logs -f qwen38-k100ai-r054
 ```
 
 健康检查：
@@ -184,7 +184,7 @@ python3 scripts/benchmark_curve.py \
 
 ## 6. 当前实际部署版本测速
 
-下面的最终发布数据来自**当前实际 Agent 使用的 0.95 + Prefix Cache 长期服务配置**，不是为了刷分而裁剪过的 synthetic benchmark 服务。
+下面的最终发布数据来自**0.95 + Prefix Cache 长期服务配置**，不是为了刷分而裁剪过的 synthetic benchmark 服务。
 
 ### 6.1 短上下文热态吞吐
 
@@ -224,9 +224,9 @@ python3 scripts/benchmark_curve.py \
 
 最后一档 **257,900 输入 + 256 输出**完整通过，没有 OOM，测试期间 `max_running=1`、`max_waiting=0`。
 
-### 6.3 真实 Agent 日常平均速度
+### 6.3 真实工作负载平均速度
 
-为了避免“十档测速很完整，但日常到底多快仍然抽象”，额外统计了过去 30 天 **1,517 次真实交互式 Agent API 调用**，并将匿名聚合后的上下文分布映射到本次实际部署曲线。
+为了避免“十档测速很完整，但日常到底多快仍然抽象”，额外统计了过去 30 天 **1,517 次真实 API 调用**，并将匿名聚合后的上下文分布映射到本次实际部署曲线。
 
 **没有公开任何 Prompt、对话正文、用户标识或 session 标识。**
 
@@ -250,13 +250,13 @@ python3 scripts/benchmark_curve.py \
 
 因此用于日常规划时，推荐用一个更贴近实际体验的单值：
 
-> **真实 Hermes / Agent 工作负载平均 Decode ≈ 15 tok/s**
+> **真实工作负载平均 Decode ≈ 15 tok/s**
 
 这是根据实际 workload 分布得到的加权估算，并不代表每一个请求都会固定运行在 15 tok/s。
 
-Prefix Caching 对 TTFT 的改善远大于对 Decode tok/s 的影响，因此也不应该拿完整冷启动上下文的 TTFT 直接代表 Agent 稳态每一轮等待时间。
+Prefix Caching 对 TTFT 的改善远大于对 Decode tok/s 的影响，因此不应该拿完整冷启动上下文的 TTFT 直接代表重复前缀场景下的稳态等待时间。
 
-### 6.4 Prefix Cache 在 Agent 场景中的效果
+### 6.4 Prefix Cache 在重复前缀场景中的效果
 
 当前实际部署配置上，对重复 32K 前缀的测试结果：
 

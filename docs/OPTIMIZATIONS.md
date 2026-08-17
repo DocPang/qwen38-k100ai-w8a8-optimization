@@ -305,9 +305,9 @@ R054 + compact M6 target: 64.5343 tok/s median
 
 R054 is fail-closed: unsupported sampler/API/prefill/shape cases use the original BF16 target head.
 
-### 3.12 Prefix Cache and long-lived Agent deployment
+### 3.12 Prefix Cache and long-lived deployment
 
-Prefix Caching is a deployment optimization rather than the core R054 math change, but it is important for the actual Hermes/Claude use case because consecutive Agent turns share most of their prefix.
+Prefix Caching is a deployment optimization rather than the core R054 math change, but it is important for long-lived workloads where consecutive requests share most of their prefix.
 
 Current long service:
 
@@ -335,8 +335,6 @@ Cleaner 32K/1-token cold-hot check:
 output SHA identical
 ```
 
-The long-lived service also enables OpenAI-compatible tool calling and a Claude-compatible served-model alias; these are integration features, not performance claims.
-
 ## 4. Performance progression to present publicly
 
 Use this table to explain the cumulative research path without publishing every failed experiment:
@@ -354,6 +352,6 @@ The current user-facing 0.95 + Prefix Cache service measures a dedicated hot512 
 
 Recommended summary:
 
-> R054 combines K100AI/gfx928 shape-aware W8A8 dispatch, native/fused INT8 runtime paths, exact HCU control-flow reductions, Qwen3.8-specific adaptive speculative scheduling, an accelerated Eagle draft shortlist, a repaired physical-M6 verifier body, and a fail-closed compact physical-M6 target head. Prefix Caching is enabled in the long-lived Agent profile to reuse repeated conversation prefixes. R054 is the accepted high-performance branch; R047 remains the stricter exact reference branch.
+> R054 combines K100AI/gfx928 shape-aware W8A8 dispatch, native/fused INT8 runtime paths, exact HCU control-flow reductions, Qwen3.8-specific adaptive speculative scheduling, an accelerated Eagle draft shortlist, a repaired physical-M6 verifier body, and a fail-closed compact physical-M6 target head. Prefix Caching is enabled in the long-lived deployment profile to reuse repeated prefixes. R054 is the accepted high-performance branch; R047 remains the stricter exact reference branch.
 
 Do **not** describe R054 as globally bitwise exact to R001/R047. K5/M6 speculative execution changes finite-precision trajectories for some prompts even though the individual M6 body repair and compact-head candidate gates were exact in their frozen scopes.

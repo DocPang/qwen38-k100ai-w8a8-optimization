@@ -1,5 +1,5 @@
 {
-  "classification": "anonymized aggregate real-world Agent workload mapped to deployed R054 curve",
+  "classification": "anonymized aggregate real-world API workload mapped to deployed R054 curve",
   "window_days": 30,
   "interactive_api_calls": 1517,
   "privacy": "aggregate only; no prompts, message text, user ids, session ids, hosts or IP addresses included",
