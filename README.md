@@ -92,7 +92,7 @@ The build defaults to `PYTORCH_ROCM_ARCH=gfx928` inside the pinned image.
 
 ## 4. Start the same profile used for real deployment
 
-This is the practical Agent profile: **0.95 memory utilization, Prefix Caching, 262K context, MTP5 below the adaptive cutoff, true-M1 above it, OpenAI + Claude-compatible model aliases, and tool-call parsing**.
+This is the practical Agent profile: **0.95 memory utilization, Prefix Caching, 262K context, MTP5 below the adaptive cutoff, true-M1 above it, OpenAI + Claude-compatible model aliases, and tool-call parsing**. The published profile is intentionally **text-only** (`--language-model-only`); Qwen3.8 vision capability is not part of this release's validated scope.
 
 ```bash
 MODEL_DIR="$HOME/models/Qwen3.8-27B-SmoothQuant-W8A8-INT8" \
