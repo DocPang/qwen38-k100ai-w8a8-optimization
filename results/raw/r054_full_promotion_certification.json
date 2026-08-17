@@ -1,0 +1,201 @@
+{
+  "status": "FULL_PROMOTED",
+  "classification": "R054 physical-M6 compact target full certification",
+  "candidate": "R054 K5/M6 compact target",
+  "warm_b2_capacity": {
+    "available_kv_cache_gib": 22.92,
+    "gpu_kv_cache_tokens": 88128,
+    "max_concurrency_for_262144_tokens": 1.31
+  },
+  "warm_b2_fixed512x512": {
+    "median_decode_tps": 64.53430324547274,
+    "min_decode_tps": 61.30914829119282,
+    "max_decode_tps": 64.56220316513016,
+    "sha_consistent": true,
+    "trajectory_consistent": true,
+    "runs": [
+      {
+        "rep": 0,
+        "decode_tps": 61.30914829119282,
+        "sha256": "0e128832e8dc4eda52a27d0878d5c9dafb4a13ff8ff091cdd8c1d74b4080b602",
+        "drafted": 485.0,
+        "accepted": 414.0
+      },
+      {
+        "rep": 1,
+        "decode_tps": 64.53430324547274,
+        "sha256": "0e128832e8dc4eda52a27d0878d5c9dafb4a13ff8ff091cdd8c1d74b4080b602",
+        "drafted": 485.0,
+        "accepted": 414.0
+      },
+      {
+        "rep": 2,
+        "decode_tps": 64.56220316513016,
+        "sha256": "0e128832e8dc4eda52a27d0878d5c9dafb4a13ff8ff091cdd8c1d74b4080b602",
+        "drafted": 485.0,
+        "accepted": 414.0
+      }
+    ]
+  },
+  "a1_curve": {
+    "all_faster_than_r052": true,
+    "all_faster_than_r047": true,
+    "all_sha_equal_r052": true,
+    "all_trajectory_equal_r052": true,
+    "rows": [
+      {
+        "length": 512,
+        "r054_tps": 62.707108095631185,
+        "r052_tps": 57.05730379120002,
+        "r047_tps": 52.94180533606135,
+        "gain_vs_r052_pct": 9.901982619274307,
+        "gain_vs_r047_pct": 18.445352774772484,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "927afc2ff5860f844591865b3a5410a354fff798c623cc2ca539e29e123ee3dd",
+        "drafted": 250.0,
+        "accepted": 209.0
+      },
+      {
+        "length": 2048,
+        "r054_tps": 61.647851410919685,
+        "r052_tps": 56.662366509961174,
+        "r047_tps": 52.45799103927672,
+        "gain_vs_r052_pct": 8.798582212555605,
+        "gain_vs_r047_pct": 17.518513747051934,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "0237356624abe9141f9039ccf13a34728d3d6d87f7757955f1a49244c6b3f294",
+        "drafted": 230.0,
+        "accepted": 211.0
+      },
+      {
+        "length": 3072,
+        "r054_tps": 56.87871585698963,
+        "r052_tps": 52.29579589504067,
+        "r047_tps": 50.64888838194399,
+        "gain_vs_r052_pct": 8.763457718756262,
+        "gain_vs_r047_pct": 12.300028044182177,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "0f52bae0d45903d1207be0b5174783ed717d610d839e013577f43ace616a6f0c",
+        "drafted": 235.0,
+        "accepted": 209.0
+      },
+      {
+        "length": 4096,
+        "r054_tps": 48.5733711596594,
+        "r052_tps": 44.905648688082,
+        "r047_tps": 46.02975623029427,
+        "gain_vs_r052_pct": 8.167619394730652,
+        "gain_vs_r047_pct": 5.526023028753446,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "3c3d3e2249508386eb7e004662894b36e88b1e18b2ab968bf2efc8a6ba23f5c2",
+        "drafted": 260.0,
+        "accepted": 204.0
+      },
+      {
+        "length": 5120,
+        "r054_tps": 52.00649942853386,
+        "r052_tps": 48.179013260472004,
+        "r047_tps": 45.116470562390845,
+        "gain_vs_r052_pct": 7.94430169702558,
+        "gain_vs_r047_pct": 15.271648646839298,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "566fa39f9231f35e6f686fef704a257dc42242525250294f7d877c7a3d5cfe57",
+        "drafted": 230.0,
+        "accepted": 209.0
+      },
+      {
+        "length": 6144,
+        "r054_tps": 50.37227795831862,
+        "r052_tps": 47.0035029998309,
+        "r047_tps": 44.42059780333953,
+        "gain_vs_r052_pct": 7.167072119071283,
+        "gain_vs_r047_pct": 13.398469289694347,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "0237356624abe9141f9039ccf13a34728d3d6d87f7757955f1a49244c6b3f294",
+        "drafted": 225.0,
+        "accepted": 212.0
+      },
+      {
+        "length": 8192,
+        "r054_tps": 43.03864722190758,
+        "r052_tps": 40.287759086258845,
+        "r047_tps": 38.08851195813075,
+        "gain_vs_r052_pct": 6.828099149815947,
+        "gain_vs_r047_pct": 12.996399726033726,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "9aa5c4c9640c56f5d02a466c91760eca07eab9e6146d4b25b085abc5e85d3edf",
+        "drafted": 240.0,
+        "accepted": 209.0
+      },
+      {
+        "length": 12288,
+        "r054_tps": 37.1901442371088,
+        "r052_tps": 35.06064453960967,
+        "r047_tps": 32.62429558988907,
+        "gain_vs_r052_pct": 6.073760837720288,
+        "gain_vs_r047_pct": 13.995240555124111,
+        "sha_equal_r052": true,
+        "trajectory_equal_r052": true,
+        "sha256": "a2e20c94ceaaf8a406703d6a7abca5b370f89bfd3dd07444b2642973f054bb58",
+        "drafted": 235.0,
+        "accepted": 212.0
+      }
+    ]
+  },
+  "quality": {
+    "greedy_inheritance_r054_to_r052_all15": true,
+    "logprobs_fallback_inheritance_all15": true,
+    "objective_answer_differences_vs_r001": 0,
+    "objective_cand_correct": 19,
+    "objective_base_correct": 19
+  },
+  "r053_independent_m6_gate": {
+    "selector_misses": 0,
+    "final_top1_mismatches": 0,
+    "saved_us_m6": 2544.5844332377114
+  },
+  "handoff": {
+    "status": "pass",
+    "classification": "R054 A1 strict idle handoff to same-source warm B2 capacity/speed repro",
+    "container": "qwen38-r054-k5-m6-compact-gpu3",
+    "container_id": "4c5ee3997bbc95b1506e3971ecef782ddaa947cc495d10524fb9476b8a8b0d57",
+    "samples": [
+      {
+        "running": 0.0,
+        "waiting": 0.0,
+        "gpu3_busy": 0.0
+      },
+      {
+        "running": 0.0,
+        "waiting": 0.0,
+        "gpu3_busy": 0.0
+      },
+      {
+        "running": 0.0,
+        "waiting": 0.0,
+        "gpu3_busy": 0.0
+      }
+    ],
+    "clients": [],
+    "a1_summary": "results/r054_a1_promotion_summary.json",
+    "checked_at": "2026-08-17T05:43:03+0800"
+  },
+  "source_sha256": {
+    "r054_a1_promotion_summary.json": "c8e3eb8560a2befac245377349211bd09b62958b5ada1a9aa4ab389dc641bc56",
+    "r054_a1_idle_handoff_to_b2.json": "a3a84affbe6b91021d71531961b7ce84347f1492ffa5cee91dbddd93fd1b5c6b",
+    "r054_b2_fixed512x512.json": "245728812f65fd165c01867a9fadda217080a4dd211007e85d6d22774492b8f5",
+    "r054_vs_r052_logprobs_fallback_inheritance.json": "f602f9898cb606178d275c0250260c877310a583c858114f3964f5279f2bf38d",
+    "r054_vs_r052_greedy_inheritance.json": "af903ca01b85757e08380eb6ea4037bb3d4236cfa087f3b1c33bd57e642a0c0b",
+    "r054_vs_r001_objective_arithmetic_v2.json": "579566fb5b770c2c838e80f1252fa70e4ab481fdf2cf2342b7a65c9336e7eb2a",
+    "r053_m6_compact_k512_holdout.json": "bf05050df5303595e3d83846ca55ff318da9b39a9ab5853d4dff6e101cd3dae1"
+  },
+  "remaining_certification_blockers": [],
+  "next_research_action": "Profile the warm R054 champion and choose the next exact/fail-closed optimization from the new hotspot distribution; R055 adaptive-depth remains deprioritized unless a post-R054 workload shows a crossover."
+}

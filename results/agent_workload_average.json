@@ -1,0 +1,24 @@
+{
+  "classification": "anonymized aggregate real-world Agent workload mapped to deployed R054 curve",
+  "window_days": 30,
+  "interactive_api_calls": 1517,
+  "privacy": "aggregate only; no prompts, message text, user ids, session ids, hosts or IP addresses included",
+  "call_weighted_context_distribution_pct": {
+    "lte_8k": 0.66,
+    "8k_to_16k": 1.98,
+    "16k_to_32k": 3.10,
+    "32k_to_64k": 44.63,
+    "64k_to_128k": 49.64,
+    "128k_to_256k": 0.0
+  },
+  "weighted_average_prompt_tokens_per_call": 71106.10217534608,
+  "weighted_median_session_average_prompt_tokens": 65354.71428571428,
+  "average_output_tokens_per_call": 264.7673038892551,
+  "modeled_decode_tps": {
+    "call_weighted_arithmetic": 16.17265874714107,
+    "call_weighted_harmonic_effective_time": 15.566494394936614,
+    "historical_output_token_weighted_effective": 14.8357309509776,
+    "recommended_single_number": 15.0
+  },
+  "method": "For each historical interactive session, average prompt tokens per API call were mapped by piecewise-linear interpolation onto the measured deployed-profile context/decode curve. Session results were then weighted by call count or historical generated-token count. Prefix caching is intentionally excluded from decode-rate interpolation because it primarily changes prefill/TTFT."
+}

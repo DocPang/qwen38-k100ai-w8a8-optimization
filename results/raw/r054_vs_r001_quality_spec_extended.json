@@ -1,0 +1,387 @@
+{
+  "status": "complete",
+  "base_port": 8042,
+  "cand_port": 8041,
+  "requested_cases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "completed_cases": 15,
+  "text_equal": 11,
+  "tokens_equal": 11,
+  "rows": [
+    {
+      "case": 0,
+      "prompt": "用两点说明KV Cache为什么会随上下文增长而增加显存占用。每点一句话。",
+      "text_equal": false,
+      "tokens_equal": false,
+      "common_prefix_tokens": 42,
+      "max_common_prefix_token_logprob_delta": 0.04094076156616211,
+      "base_sha256": "c5c975daa2cd976002b35968134253b9bf1a0e6a5ae96d8ed5025b27e658b562",
+      "cand_sha256": "82d5307eaef0b3afd7387d513081596fee40b8c5d2fd225c2dd036f25be57cdc",
+      "base_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 95,
+        "completion_tokens": 76,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 95,
+        "completion_tokens": 76,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n1. 随着上下文长度增加，模型需要为序列中的每一个新 Token 额外存储其对应的 Key 和 Value 向量，导致缓存数据量线性累积。\n2. 由于推理过程必须保留所有历史 Token 的 KV 数据以计算后续注意力机制，无法像权重那样复用，因此显存占用随序列长度持续攀升。",
+      "cand_text": "\n\n1. 随着上下文长度增加，模型需要为序列中的每一个新 Token 额外存储其对应的 Key 和 Value 向量，导致缓存数据量线性累积。\n2. 由于推理过程中必须保留所有历史 Token 的 KV 数据以计算后续注意力机制，无法像权重那样复用，因此显存占用随序列长度持续攀升。"
+    },
+    {
+      "case": 1,
+      "prompt": "用一句话解释什么是张量并行（tensor parallelism），不要举例。",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 39,
+      "max_common_prefix_token_logprob_delta": 0.0,
+      "base_sha256": "0d02179fd00ca89a5e8002695aeb94d8726b73cdf3177e1a3fa8030efb89c083",
+      "cand_sha256": "0d02179fd00ca89a5e8002695aeb94d8726b73cdf3177e1a3fa8030efb89c083",
+      "base_usage": {
+        "prompt_tokens": 15,
+        "total_tokens": 54,
+        "completion_tokens": 39,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 15,
+        "total_tokens": 54,
+        "completion_tokens": 39,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n张量并行是一种将神经网络中单个大矩阵运算切分到多个计算设备上并行执行，以突破单卡显存限制并加速大模型训练与推理的分布式策略。",
+      "cand_text": "\n\n张量并行是一种将神经网络中单个大矩阵运算切分到多个计算设备上并行执行，以突破单卡显存限制并加速大模型训练与推理的分布式策略。"
+    },
+    {
+      "case": 2,
+      "prompt": "计算 37*24-18，并只给出算式和最终结果。",
+      "text_equal": false,
+      "tokens_equal": false,
+      "common_prefix_tokens": 11,
+      "max_common_prefix_token_logprob_delta": 0.019250988960266113,
+      "base_sha256": "60d65ab66da5a0e67f96a7b524b7af692c463752cfe2ee87907e2c4054b1e5ce",
+      "cand_sha256": "6e3a965bcfd1fe21ecd15557c4aa628de8c5f9f77ee2ec6bf4386506b23b567e",
+      "base_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 33,
+        "completion_tokens": 14,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 33,
+        "completion_tokens": 14,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n37*24-18=850",
+      "cand_text": "\n\n37*24-18=870"
+    },
+    {
+      "case": 3,
+      "prompt": "A train travels 180 km in 2.5 hours. What is its average speed in km/h? Answer in one sentence.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 14,
+      "max_common_prefix_token_logprob_delta": 0.02902984619140625,
+      "base_sha256": "553621e788185725bb2ac5d485292a72c549f37d9c9b2b0e21c19b299438fa9b",
+      "cand_sha256": "553621e788185725bb2ac5d485292a72c549f37d9c9b2b0e21c19b299438fa9b",
+      "base_usage": {
+        "prompt_tokens": 29,
+        "total_tokens": 43,
+        "completion_tokens": 14,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 29,
+        "total_tokens": 43,
+        "completion_tokens": 14,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\nThe train's average speed is 72 km/h.",
+      "cand_text": "\n\nThe train's average speed is 72 km/h."
+    },
+    {
+      "case": 4,
+      "prompt": "Write a Python function with type hints that returns True iff a list of integers is strictly increasing. Include no explanation outside the code block.",
+      "text_equal": false,
+      "tokens_equal": false,
+      "common_prefix_tokens": 51,
+      "max_common_prefix_token_logprob_delta": 0.268916517496109,
+      "base_sha256": "abc0f4c10a644ff3a427e879955ac08ceaa845af39c063e752d484cfd5ee42c0",
+      "cand_sha256": "2ec99a4df23e95e4c1b289ffdde3db8a1bfe85d0ea8c92fdc91415208723a7c5",
+      "base_usage": {
+        "prompt_tokens": 27,
+        "total_tokens": 123,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 27,
+        "total_tokens": 123,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n<think>\nThe user wants a Python function with type hints that checks if a list of integers is strictly increasing. They want only the code block, no explanation outside it.\n\nA strictly increasing list means each element is greater than the previous one. For example, [1, 2, 3] is strictly increasing, but [1, 1, 2] is not.\n\nEdge cases:\n- Empty list: should return True (vacuously true)",
+      "cand_text": "\n\n<think>\nThe user wants a Python function with type hints that checks if a list of integers is strictly increasing. They want only the code block, no explanation outside it.\n\nA strictly increasing list means each element is greater than the previous one. For a list of length 0 or 1, it's trivially strictly increasing.\n\nLet me write this:\n\n```python\ndef is_strictly_increasing(lst: list[int]) -> bool:\n    return"
+    },
+    {
+      "case": 5,
+      "prompt": "Return JSON only: {\"model\":\"qwen3.8\",\"precision\":\"int8\",\"cards\":1}. Do not add keys.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 20,
+      "max_common_prefix_token_logprob_delta": 0.00033942220034077764,
+      "base_sha256": "45bf6827cbd035d926b0a6544003fe8f4ee63cacf2c145a65eb47aac0d032210",
+      "cand_sha256": "45bf6827cbd035d926b0a6544003fe8f4ee63cacf2c145a65eb47aac0d032210",
+      "base_usage": {
+        "prompt_tokens": 27,
+        "total_tokens": 47,
+        "completion_tokens": 20,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 27,
+        "total_tokens": 47,
+        "completion_tokens": 20,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n{\"model\":\"qwen3.8\",\"precision\":\"int8\",\"cards\":1}",
+      "cand_text": "\n\n{\"model\":\"qwen3.8\",\"precision\":\"int8\",\"cards\":1}"
+    },
+    {
+      "case": 6,
+      "prompt": "Translate into English only: 长上下文会增加注意力读取KV缓存的开销。",
+      "text_equal": false,
+      "tokens_equal": false,
+      "common_prefix_tokens": 52,
+      "max_common_prefix_token_logprob_delta": 0.22228771448135376,
+      "base_sha256": "1df2e5e8d5291e0db335fe3ff6846a115c6d85d1a402373680f6a8201166fd6b",
+      "cand_sha256": "2538e26e04a7474e0651fd8951734895c4326adf0795e65d7fe414cb4534b631",
+      "base_usage": {
+        "prompt_tokens": 16,
+        "total_tokens": 112,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 16,
+        "total_tokens": 112,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n<think>\nThe user wants me to translate a Chinese sentence into English. Let me analyze the sentence:\n\n长上下文会增加注意力读取KV缓存的开销。\n\nBreaking this down:\n- 长上下文 = long context\n- 会增加 = will increase / increases\n- 注意力 = attention\n- 读取 = reading / reading from\n- KV缓存 = KV cache (Key-Value cache)\n- 的开销 = the overhead / the cost\n\nThis is",
+      "cand_text": "\n\n<think>\nThe user wants me to translate a Chinese sentence into English. Let me analyze the sentence:\n\n长上下文会增加注意力读取KV缓存的开销。\n\nBreaking this down:\n- 长上下文 = long context\n- 会增加 = will increase\n- 注意力 = attention\n- 读取KV缓存 = reading the KV cache\n- 的开销 = the overhead\n\nSo the full sentence is about how long context increases the overhead of attention reading the KV cache"
+    },
+    {
+      "case": 7,
+      "prompt": "Explain in exactly two sentences why quantizing weights does not automatically quantize the KV cache.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 62,
+      "max_common_prefix_token_logprob_delta": 0.19676446914672852,
+      "base_sha256": "447893fffd5f2f60868652d865d8f31a431cba3038364db73f83f97bc7795123",
+      "cand_sha256": "447893fffd5f2f60868652d865d8f31a431cba3038364db73f83f97bc7795123",
+      "base_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 81,
+        "completion_tokens": 62,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 81,
+        "completion_tokens": 62,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\nWeight quantization compresses the static parameters of the model, which are fixed after training, whereas the KV cache stores dynamic, runtime-generated activations that depend on the specific input sequence. Since these activations are computed on the fly and have different numerical distributions, they require separate quantization techniques to be compressed.",
+      "cand_text": "\n\nWeight quantization compresses the static parameters of the model, which are fixed after training, whereas the KV cache stores dynamic, runtime-generated activations that depend on the specific input sequence. Since these activations are computed on the fly and have different numerical distributions, they require separate quantization techniques to be compressed."
+    },
+    {
+      "case": 8,
+      "prompt": "下面三个数按从小到大排序：3.14, -2, 0.5。只输出排序后的列表。",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 16,
+      "max_common_prefix_token_logprob_delta": 0.001521846279501915,
+      "base_sha256": "87c04b99d719c8327513d293497b46d3137409353fb8ea7642eceae03ee0c21d",
+      "cand_sha256": "87c04b99d719c8327513d293497b46d3137409353fb8ea7642eceae03ee0c21d",
+      "base_usage": {
+        "prompt_tokens": 26,
+        "total_tokens": 42,
+        "completion_tokens": 16,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 26,
+        "total_tokens": 42,
+        "completion_tokens": 16,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n[-2, 0.5, 3.14]",
+      "cand_text": "\n\n[-2, 0.5, 3.14]"
+    },
+    {
+      "case": 9,
+      "prompt": "If A implies B and B implies C, and A is true, what can we conclude about C? Answer briefly.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 27,
+      "max_common_prefix_token_logprob_delta": 0.0,
+      "base_sha256": "886e2ef71a6143560cad620691ae360333cea3ddb50d358eedfc86b3ccdfa053",
+      "cand_sha256": "886e2ef71a6143560cad620691ae360333cea3ddb50d358eedfc86b3ccdfa053",
+      "base_usage": {
+        "prompt_tokens": 24,
+        "total_tokens": 51,
+        "completion_tokens": 27,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 24,
+        "total_tokens": 51,
+        "completion_tokens": 27,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\nC is true. (By the transitive property of implication: A → B and B → C implies A → C.)",
+      "cand_text": "\n\nC is true. (By the transitive property of implication: A → B and B → C implies A → C.)"
+    },
+    {
+      "case": 10,
+      "prompt": "Give three comma-separated words describing desirable properties of an inference benchmark: reproducible, uncontaminated, representative. Output exactly the three words.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 11,
+      "max_common_prefix_token_logprob_delta": 0.004462670534849167,
+      "base_sha256": "8ee55d3cd85d70df719685835d00b38a13957a4cd639dd858492f201a1de2083",
+      "cand_sha256": "8ee55d3cd85d70df719685835d00b38a13957a4cd639dd858492f201a1de2083",
+      "base_usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 39,
+        "completion_tokens": 11,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 39,
+        "completion_tokens": 11,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\nreproducible, uncontaminated, representative",
+      "cand_text": "\n\nreproducible, uncontaminated, representative"
+    },
+    {
+      "case": 11,
+      "prompt": "A server processes 256 output tokens in 8 seconds after prefill. Compute decode throughput in tokens/s and give only the number with unit.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 20,
+      "max_common_prefix_token_logprob_delta": 0.17528021335601807,
+      "base_sha256": "2ff9719f1e6ee60a9f4cf9898c3904add9a4e83ce71aa90b630409f36d7653a6",
+      "cand_sha256": "2ff9719f1e6ee60a9f4cf9898c3904add9a4e83ce71aa90b630409f36d7653a6",
+      "base_usage": {
+        "prompt_tokens": 31,
+        "total_tokens": 51,
+        "completion_tokens": 20,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 31,
+        "total_tokens": 51,
+        "completion_tokens": 20,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n256 / 8 = 32 tokens/s.\n\n32 tokens/s",
+      "cand_text": "\n\n256 / 8 = 32 tokens/s.\n\n32 tokens/s"
+    },
+    {
+      "case": 12,
+      "prompt": "用不超过40个汉字解释为什么同一个模型的不同执行路径可能出现微小logit差异。",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 28,
+      "max_common_prefix_token_logprob_delta": 0.0,
+      "base_sha256": "5a1aa9b29ff839fa91182c241612a6327062737744dd63ebc3efafa4a5ba088b",
+      "cand_sha256": "5a1aa9b29ff839fa91182c241612a6327062737744dd63ebc3efafa4a5ba088b",
+      "base_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 47,
+        "completion_tokens": 28,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 47,
+        "completion_tokens": 28,
+        "prompt_tokens_details": null
+      },
+      "base_text": "<think>\n\n</think>\n\n浮点运算顺序不同导致舍入误差累积，加上并行计算的非确定性，使微小差异被放大。",
+      "cand_text": "<think>\n\n</think>\n\n浮点运算顺序不同导致舍入误差累积，加上并行计算的非确定性，使微小差异被放大。"
+    },
+    {
+      "case": 13,
+      "prompt": "Write the hexadecimal representation of decimal 255. Output only the hexadecimal value with 0x prefix.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 4,
+      "max_common_prefix_token_logprob_delta": 0.0,
+      "base_sha256": "76165b913147090baea2626051ce9d8a982362fcac06c174eca0cd7c0fe5d0cd",
+      "cand_sha256": "76165b913147090baea2626051ce9d8a982362fcac06c174eca0cd7c0fe5d0cd",
+      "base_usage": {
+        "prompt_tokens": 22,
+        "total_tokens": 26,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 22,
+        "total_tokens": 26,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\n0xFF",
+      "cand_text": "\n\n0xFF"
+    },
+    {
+      "case": 14,
+      "prompt": "Return exactly: K100AI supports INT8. Do not add punctuation or explanation.",
+      "text_equal": true,
+      "tokens_equal": true,
+      "common_prefix_tokens": 10,
+      "max_common_prefix_token_logprob_delta": 0.0016735643148422241,
+      "base_sha256": "5487d87e0a0ffc3cc4b51687368d5dfccb97469ce0a8cdf1dae85c5e1c0b62a1",
+      "cand_sha256": "5487d87e0a0ffc3cc4b51687368d5dfccb97469ce0a8cdf1dae85c5e1c0b62a1",
+      "base_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 29,
+        "completion_tokens": 10,
+        "prompt_tokens_details": null
+      },
+      "cand_usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 29,
+        "completion_tokens": 10,
+        "prompt_tokens_details": null
+      },
+      "base_text": "\n\nK100AI supports INT8",
+      "cand_text": "\n\nK100AI supports INT8"
+    }
+  ]
+}

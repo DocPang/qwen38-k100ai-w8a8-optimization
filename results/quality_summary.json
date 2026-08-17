@@ -1,0 +1,29 @@
+{
+  "classification": "relaxed/non-exact fast branch",
+  "r054_vs_r001_extended15": {
+    "completed": 15,
+    "text_equal": 11,
+    "tokens_equal": 11,
+    "different_cases": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "max_common_prefix_same_token_logprob_delta": 0.268916517496109
+  },
+  "objective_arithmetic20": {
+    "completed": 20,
+    "base_scorable": 20,
+    "candidate_scorable": 20,
+    "base_correct": 19,
+    "candidate_correct": 19,
+    "answer_differences": 0
+  },
+  "r054_vs_r052_inheritance": {
+    "cases": 15,
+    "sha_equal": 15,
+    "completion_equal": 15,
+    "finish_equal": 15
+  }
+}

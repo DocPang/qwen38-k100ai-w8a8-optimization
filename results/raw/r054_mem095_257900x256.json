@@ -1,0 +1,25 @@
+{
+  "port": 8042,
+  "model": "qwen3.8-27b-w8a8",
+  "output_tokens": 256,
+  "status": "complete",
+  "rows": [
+    {
+      "requested_prompt_tokens": 257900,
+      "prompt_tokens": 257900,
+      "completion_tokens": 256,
+      "ttft_s": 906.7028647300322,
+      "prefill_proxy_tps": 284.43717344688093,
+      "decode_tps": 10.08359438665103,
+      "total_s": 931.9914662169758,
+      "sha256": "02e087b926bc14b54b9f8125813a0aa66aebc3633071820504cdb221bbb4aa87",
+      "max_running": 1.0,
+      "max_waiting": 0.0,
+      "contaminated": false,
+      "drafted": 0.0,
+      "accepted": 0.0,
+      "accept_rate": null,
+      "mean_accept_len": null
+    }
+  ]
+}

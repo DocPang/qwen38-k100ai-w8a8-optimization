@@ -1,0 +1,19 @@
+{
+  "provider": "HuggingFace",
+  "repo_id": "Freaksterz/Qwen3.8-27B-SmoothQuant-W8A8-INT8",
+  "validated_revision": "417ede1e4524c8fdbb586ebdabc9cfc5d0760b3e",
+  "download_date_local": "2026-08-15",
+  "download_client": "Free Download Manager on macOS",
+  "evidence": "FDM SQLite task URLs and HTTP logs contain direct huggingface.co/<repo>/resolve/<revision>/ requests for model shards, metadata, and quantization helpers",
+  "upstream_quantization_helpers": {
+    "quantization/apply-smoothing-full.py": {
+      "sha256": "382f5e13024fba3e46a7f114037157d2d065d4998aa0bb07375de4d86c4a514e",
+      "fdm_etag": "e175eb8862591126931d6f23e8cd3cc771f4681a"
+    },
+    "quantization/verify-smoothing-full.py": {
+      "sha256": "34fd9d21ca539076c30476c67ba685ff9bf116631f77a20e710a107c0880b7b0",
+      "fdm_etag": "77aeba7d30671ee48d1afef7a3a1b04b69507359"
+    }
+  },
+  "public_reproduction_boundary": "pinned upstream checkpoint -> K100AI runtime/native patches -> R054 service -> benchmark/quality checks"
+}

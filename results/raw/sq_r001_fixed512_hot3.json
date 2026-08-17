@@ -1,0 +1,49 @@
+{
+  "port": 8042,
+  "model": "qwen3.8-27b-w8a8",
+  "output_tokens": 512,
+  "rows": [
+    {
+      "completion_tokens": 512,
+      "ttft_s": 0.27563495899084955,
+      "decode_s": 14.918579447024968,
+      "decode_tps": 34.25259099330014,
+      "total_s": 15.194214406015817,
+      "sha256": "16e93f082dc1fd4a81dff0a0104b9974cfb618bab5fb64e2abe4cc06fa25feaa",
+      "max_running": 1.0,
+      "max_waiting": 0.0,
+      "contaminated": false,
+      "round": 0
+    },
+    {
+      "completion_tokens": 512,
+      "ttft_s": 0.3093717430019751,
+      "decode_s": 14.935081698000431,
+      "decode_tps": 34.214744206482294,
+      "total_s": 15.244453441002406,
+      "sha256": "16e93f082dc1fd4a81dff0a0104b9974cfb618bab5fb64e2abe4cc06fa25feaa",
+      "max_running": 1.0,
+      "max_waiting": 0.0,
+      "contaminated": false,
+      "round": 1
+    },
+    {
+      "completion_tokens": 512,
+      "ttft_s": 0.33231496601365507,
+      "decode_s": 14.882209714967757,
+      "decode_tps": 34.33629882839661,
+      "total_s": 15.214524680981413,
+      "sha256": "16e93f082dc1fd4a81dff0a0104b9974cfb618bab5fb64e2abe4cc06fa25feaa",
+      "max_running": 1.0,
+      "max_waiting": 0.0,
+      "contaminated": false,
+      "round": 2
+    }
+  ],
+  "valid_rounds": 3,
+  "median_decode_tps": 34.25259099330014,
+  "mean_decode_tps": 34.26787800939301,
+  "hashes": [
+    "16e93f082dc1fd4a81dff0a0104b9974cfb618bab5fb64e2abe4cc06fa25feaa"
+  ]
+}

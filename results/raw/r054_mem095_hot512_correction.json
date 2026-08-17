@@ -1,0 +1,73 @@
+{
+  "status": "complete",
+  "classification": "sequential same-GPU repeated decode curve",
+  "label": "R054-mem095-hot512-correction",
+  "port": 8042,
+  "model": "qwen3.8-27b-w8a8",
+  "lengths": [
+    512
+  ],
+  "output_tokens": 256,
+  "repeats": 3,
+  "seed": 20260816,
+  "rows": [
+    {
+      "length": 512,
+      "prompt_sha256": "07a92c56e0d15873a25f7a2509285d5a8dcdd675006c248b121e0508c0161dd7",
+      "warmup": {
+        "prompt_tokens": 512,
+        "completion_tokens": 8,
+        "ttft_s": 0.6857672550249845,
+        "decode_s": 0.4026315719820559,
+        "decode_tps": 17.385621215794696,
+        "total_s": 1.0883988270070404,
+        "sha256": "c4db5d156605da7b5bb94c8c59f801bef3e3ea6f15fe92ed8682a17f7bee6878",
+        "drafted": 25.0,
+        "accepted": 2.0
+      },
+      "runs": [
+        {
+          "prompt_tokens": 512,
+          "completion_tokens": 256,
+          "ttft_s": 0.6572917570592836,
+          "decode_s": 4.066984121920541,
+          "decode_tps": 62.70002349544016,
+          "total_s": 4.7242758789798245,
+          "sha256": "927afc2ff5860f844591865b3a5410a354fff798c623cc2ca539e29e123ee3dd",
+          "drafted": 250.0,
+          "accepted": 209.0,
+          "rep": 0
+        },
+        {
+          "prompt_tokens": 512,
+          "completion_tokens": 256,
+          "ttft_s": 0.6612127489643171,
+          "decode_s": 4.070203533046879,
+          "decode_tps": 62.65042962338341,
+          "total_s": 4.731416282011196,
+          "sha256": "927afc2ff5860f844591865b3a5410a354fff798c623cc2ca539e29e123ee3dd",
+          "drafted": 250.0,
+          "accepted": 209.0,
+          "rep": 1
+        },
+        {
+          "prompt_tokens": 512,
+          "completion_tokens": 256,
+          "ttft_s": 0.6568762309616432,
+          "decode_s": 4.065128962974995,
+          "decode_tps": 62.72863722714041,
+          "total_s": 4.7220051939366385,
+          "sha256": "927afc2ff5860f844591865b3a5410a354fff798c623cc2ca539e29e123ee3dd",
+          "drafted": 250.0,
+          "accepted": 209.0,
+          "rep": 2
+        }
+      ],
+      "median_decode_tps": 62.70002349544016,
+      "min_decode_tps": 62.65042962338341,
+      "max_decode_tps": 62.72863722714041,
+      "sha_consistent": true,
+      "trajectory_consistent": true
+    }
+  ]
+}

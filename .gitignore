@@ -1,0 +1,7 @@
+.cache/
+__pycache__/
+*.pyc
+native_ext/*.so
+native_ext/build_*/
+*.log
+.DS_Store
