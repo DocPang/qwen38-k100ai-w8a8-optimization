@@ -1,0 +1,131 @@
+{
+  "classification": "medium-context real-world benchmark publication authority",
+  "hardware": "Hygon K100AI / gfx928 / single GPU / TP=1",
+  "model": "Qwen3.8-27B SmoothQuant W8A8/INT8",
+  "champion_branch": "R054 K5/M6 compact-target fast branch",
+  "champion_semantics": "relaxed/non-exact fast branch relative to the strict R001/R047 reference line",
+  "primary_context_region_prompt_tokens": [8192, 12288, 16384],
+  "preferred_anchor_prompt_tokens": 16384,
+  "output_tokens": 256,
+  "decode_tps_definition": "(completion_tokens - 1) / wall_time_from_first_streamed_token_to_request_end",
+  "short_context_policy": "512/1K/2K peak throughput is regression/ceiling evidence only and is not eligible for the real-world medium-context headline",
+  "benchmark_champion_curve": {
+    "profile": "R054, gpu_memory_utilization=0.95, single request, no waiting overlap, MTP5 below adaptive cutoff",
+    "reproducibility": "published single-curve authority; pinned release recipe and raw artifact; each row uncontaminated",
+    "source": "results/raw/r054_mem095_10level_curve.json",
+    "source_sha256": "ac906b3c8e9619419a4de8653e8cf440f9b3f94ec3170b0d11bdb8a6a0089619",
+    "rows": [
+      {
+        "prompt_tokens": 8192,
+        "completion_tokens": 256,
+        "decode_tps": 44.46182758142888,
+        "mtp_mode": "MTP5",
+        "drafted": 230.0,
+        "accepted": 212.0,
+        "contaminated": false
+      },
+      {
+        "prompt_tokens": 12288,
+        "completion_tokens": 256,
+        "decode_tps": 35.99448047249525,
+        "mtp_mode": "MTP5",
+        "drafted": 235.0,
+        "accepted": 211.0,
+        "contaminated": false
+      },
+      {
+        "prompt_tokens": 16384,
+        "completion_tokens": 256,
+        "decode_tps": 31.96441337849327,
+        "mtp_mode": "MTP5",
+        "drafted": 235.0,
+        "accepted": 212.0,
+        "contaminated": false
+      }
+    ]
+  },
+  "deployed_profile_confirmation": {
+    "profile": "R054, gpu_memory_utilization=0.95, Prefix Caching enabled, 262144 max context, long-lived deployment profile",
+    "reproducibility": "published deployment-profile single-curve authority; pinned release recipe and raw artifact; each row uncontaminated",
+    "source": "results/raw/r054_deployed_mem095_prefixcache_10level_final.json",
+    "source_sha256": "1ba5c09c06d72e5eb426e6c57a7ed0d2cfe100e7fcd7312e28599bd86927f869",
+    "rows": [
+      {
+        "prompt_tokens": 8192,
+        "completion_tokens": 256,
+        "decode_tps": 43.46833182113215,
+        "mtp_mode": "MTP5",
+        "drafted": 230.0,
+        "accepted": 213.0,
+        "contaminated": false
+      },
+      {
+        "prompt_tokens": 12288,
+        "completion_tokens": 256,
+        "decode_tps": 36.631424819877246,
+        "mtp_mode": "MTP5",
+        "drafted": 235.0,
+        "accepted": 208.0,
+        "contaminated": false
+      },
+      {
+        "prompt_tokens": 16384,
+        "completion_tokens": 256,
+        "decode_tps": 31.688243380689197,
+        "mtp_mode": "MTP5",
+        "drafted": 235.0,
+        "accepted": 212.0,
+        "contaminated": false
+      }
+    ]
+  },
+  "matched_repeated_support": {
+    "profile": "R054 promotion curve, same deterministic prompt family, output256, two scored repeats after warmup",
+    "reproducibility": "matched repeated authority with stable output SHA and speculative trajectory within each context",
+    "source": "results/raw/r054_repeated_curve_8k_12k.json",
+    "source_sha256": "d6f25c11fed5422412123c955f52eb186b90b1af084d521d03342c492dec11c5",
+    "rows": [
+      {
+        "prompt_tokens": 8192,
+        "completion_tokens": 256,
+        "median_decode_tps": 43.03864722190758,
+        "measured_decode_tps": [43.01835018463474, 43.05894425918043],
+        "drafted": 240.0,
+        "accepted": 209.0,
+        "sha_consistent": true,
+        "trajectory_consistent": true
+      },
+      {
+        "prompt_tokens": 12288,
+        "completion_tokens": 256,
+        "median_decode_tps": 37.1901442371088,
+        "measured_decode_tps": [37.230897606848565, 37.149390867369036],
+        "drafted": 235.0,
+        "accepted": 212.0,
+        "sha_consistent": true,
+        "trajectory_consistent": true
+      }
+    ]
+  },
+  "true_m1_separation": {
+    "medium_context_champion_status": "not crowned: no comparable final SmoothQuant/R054 true-M1 8K/12K/16K curve exists in the audited historical artifacts",
+    "nearest_formal_same_checkpoint_anchor": {
+      "prompt_tokens": 24576,
+      "completion_tokens": 256,
+      "decode_tps": 15.042504352456223,
+      "drafted": 0.0,
+      "accepted": 0.0,
+      "contaminated": false,
+      "source": "results/raw/sq_r001_true_m1_24k.json",
+      "source_sha256": "3392d2330995c518e3547b7d814b92b5b690432b438795f8e2d7023eb7eb0b1c"
+    },
+    "note": "Earlier RTN-line 16K true-M1 points exist, including 15.5019 tok/s on R001 and 17.5621 tok/s on the R193/R224 migration bundle, but those are not the final public SmoothQuant branch and are not used as the no-MTP headline."
+  },
+  "selection_rationale": [
+    "R054 is the latest promoted branch with strong matched repeated medium-context evidence at both 8K and 12K.",
+    "The public 0.95 R054 curve supplies a clean 16K MTP5 anchor at 31.9644 tok/s and remains an intact 8K/12K/16K curve.",
+    "The actual 0.95 + Prefix Cache deployment profile independently confirms the same 16K performance class at 31.6882 tok/s.",
+    "Later fixed-512 winners and isolated-kernel results have no promoted 8K/12K/16K full-model curve and therefore cannot displace R054 for this claim.",
+    "Values from different runs are never stitched into a synthetic best-of curve."
+  ]
+}

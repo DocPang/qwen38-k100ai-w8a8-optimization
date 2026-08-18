@@ -176,9 +176,27 @@ The benchmark scripts record TTFT, prefill proxy throughput, decode throughput, 
 
 ## 6. Current deployed-profile measurements
 
-The final publication measurements below are from the **0.95 + Prefix Cache long-lived deployment profile**, not a synthetic stripped-down service.
+This section first presents the **0.95 single-request benchmark authority** used to select the 8K–16K champion, then the actual **0.95 + Prefix Cache long-lived deployment profile** confirmation. Each curve is kept intact rather than stitched point-by-point; the deployment measurements are not from a synthetic stripped-down service.
 
-### 6.1 Short hot throughput
+### 6.0 Medium-context result first: 8K–16K
+
+This repository now treats **8K–16K medium context** as the primary single-GPU performance headline instead of using a 512/1K/2K peak as a proxy for real use. After auditing the historical result artifacts, the configuration-level champion remains **R054 K5/M6, TP=1**.
+
+Published 0.95 single-request benchmark curve:
+
+| Prompt | Output | Decode | Mode |
+|---:|---:|---:|---|
+| 8K | 256 | **44.46 tok/s** | MTP5 |
+| 12K | 256 | **35.99 tok/s** | MTP5 |
+| 16K | 256 | **31.96 tok/s** | MTP5 |
+
+The actual 0.95 + Prefix Cache long-lived profile independently confirms **43.47 / 36.63 / 31.69 tok/s** at 8K / 12K / 16K (output256, all MTP5). R054 promotion evidence also includes same-prompt repeated measurements: **43.0386 tok/s median at 8K** and **37.1901 tok/s median at 12K**, with stable output SHA and speculative trajectory.
+
+> Keep each recorded curve intact. Do **not** pick the fastest point from different runs and stitch them into a synthetic best-of curve. The preferred 16K benchmark anchor is **31.9644 tok/s**.
+
+The Chinese-first evidence audit, MTP/true-M1 separation, raw JSON provenance and SHA256 values are in [`docs/REALWORLD_MEDIUM_CONTEXT.md`](docs/REALWORLD_MEDIUM_CONTEXT.md). Machine-readable summary: `results/realworld_medium_context_summary.json`.
+
+### 6.1 Short hot throughput (secondary regression/ceiling data)
 
 Fixed prompt 512, output 512, one warmup + five scored repeats:
 

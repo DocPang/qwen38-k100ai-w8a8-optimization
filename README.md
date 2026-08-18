@@ -184,9 +184,27 @@ python3 scripts/benchmark_curve.py \
 
 ## 6. 当前实际部署版本测速
 
-下面的最终发布数据来自**0.95 + Prefix Cache 长期服务配置**，不是为了刷分而裁剪过的 synthetic benchmark 服务。
+本节先给出用于确定 8K–16K 冠军的 **0.95 单请求 benchmark authority**，再给出 **0.95 + Prefix Cache 长期服务配置**的实际部署确认。两套曲线都保留原始 run 的完整性，不按档位混拼；后续长期部署数据也不是为了刷分而裁剪过的 synthetic 服务。
 
-### 6.1 短上下文热态吞吐
+### 6.0 先看 8K–16K：真实使用区间冠军
+
+本仓库现在把 **8K–16K 中等上下文**作为单卡性能 headline，而不是用 512/1K/2K 的峰值代表真实使用速度。历史证据审计后，当前配置级冠军仍然是 **R054 K5/M6，TP=1**。
+
+公开的 0.95 单请求 benchmark 曲线：
+
+| 输入上下文 | 输出 | Decode | 模式 |
+|---:|---:|---:|---|
+| 8K | 256 | **44.46 tok/s** | MTP5 |
+| 12K | 256 | **35.99 tok/s** | MTP5 |
+| 16K | 256 | **31.96 tok/s** | MTP5 |
+
+实际 0.95 + Prefix Cache 长期部署曲线独立确认：**43.47 / 36.63 / 31.69 tok/s**（8K / 12K / 16K，output256，均为 MTP5）。R054 promotion 还保留了更严格的同 prompt 双重复证据：8K **43.0386**、12K **37.1901 tok/s** 中位数，输出 SHA 和 speculative trajectory 均稳定。
+
+> 这些数字必须按各自完整曲线理解，**不能**从不同 run 里挑每档最高值再拼成一个 synthetic best-of 曲线。16K headline 锚点为公开 benchmark 曲线的 **31.9644 tok/s**。
+
+详细的证据分级、MTP / true-M1 分离、原始 JSON 与 SHA256：[`docs/REALWORLD_MEDIUM_CONTEXT.md`](docs/REALWORLD_MEDIUM_CONTEXT.md)。机器可读汇总：`results/realworld_medium_context_summary.json`。
+
+### 6.1 短上下文热态吞吐（次要回归/上限数据）
 
 固定输入 512 token、输出 512 token，先 warmup，再正式测 5 次：
 
